@@ -25,3 +25,9 @@ The database is a Turso database. It is sqlite on Edge. The database schema is l
 ### Migrations
 
 To create a migration, run `bun db:generate`. This will create a migration file in the `db/migrations` folder. To run the migrations, run `bun db:migrate`.
+
+## What's next ?
+
+- [ ] Lucia Oauth
+- [ ] Basic Components
+- [ ] Documentations
