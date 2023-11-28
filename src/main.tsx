@@ -10,7 +10,7 @@ const app = new Elysia()
   .use(staticPlugin())
   .get("/", () => (
     <BaseHTML>
-      <h1 class="text-red-500">Hey There!</h1>
+      <h1 class="text-indigo-500">Hey There!</h1>
     </BaseHTML>
   ))
   .listen(3000);
