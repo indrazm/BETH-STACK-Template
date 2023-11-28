@@ -19,21 +19,21 @@ export const Dashboard = async ({ userId }: { userId: string }) => {
       </header>
       <main class="mt-12 max-w-4xl m-auto space-y-12">
         <section class="space-y-2">
-          <h4>Here is the dashboard</h4>
-          <p>Feel free to use and edit...</p>
+          <h4 class="box">Here is the dashboard</h4>
+          <p class="box">Feel free to use and edit...</p>
         </section>
         <section class="space-y-3">
-          <h5>Tech Stack</h5>
-          <ul>
-            <li>Bun.js</li>
-            <li>Elysiajs</li>
-            <li>Turso</li>
-            <li>HTMX</li>
+          <h5 class="box">Tech Stack</h5>
+          <ul class="box">
+            <li class="box">Bun.js</li>
+            <li class="box">Elysiajs</li>
+            <li class="box">Turso</li>
+            <li class="box">HTMX</li>
           </ul>
         </section>
         <section class="space-y-3">
-          <h5>Another tech</h5>
-          <p>It use Lucia Auth for Authentication, Drizzle for Database ORM, Tailwindcss, and Typescripts.</p>
+          <h5 class="box">Another tech</h5>
+          <p class="box">It use Lucia Auth for Authentication, Drizzle for Database ORM, Tailwindcss, and Typescripts.</p>
         </section>
       </main>
     </BaseHTML>

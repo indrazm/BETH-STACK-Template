@@ -12,9 +12,17 @@ export const BaseHTML = ({ children }: Html.PropsWithChildren) => {
         <link rel="stylesheet" href="/public/globals.css" />
         <script src="https://unpkg.com/htmx.org@1.9.9"></script>
         <script src="https://unpkg.com/htmx.org/dist/ext/disable-element.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        
     </head>
     <body>
         ${children}
+        <script>
+            const boxes = document.querySelectorAll('.box');
+            const tl = gsap.timeline({ defaults: { duration: 0.655, ease: 'power2.inOut' } });
+            tl.from(boxes, { opacity: 0, stagger: 0.2 });
+            tl.play();
+        </script>
     </body>
     </html>`;
 };
