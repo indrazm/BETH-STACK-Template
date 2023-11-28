@@ -8,7 +8,7 @@ export const Dashboard = async ({ userId }: { userId: string }) => {
       <header class="flex justify-between p-4 items-center bg-gradient-to-b from-indigo-100 to-transparent">
         <div class="flex gap-2 items-center">
           <img src="public/logo.svg" width="24px" height="24px" />
-          <div class="font-bold tracking-tighter text-lg"></div>
+          <div class="font-bold tracking-tighter text-lg">BETH.</div>
         </div>
         <nav class="flex items-center gap-4">
           <div safe>{user.name}</div>
