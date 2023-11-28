@@ -31,3 +31,4 @@ To create a migration, run `bun db:generate`. This will create a migration file 
 - [ ] Lucia Oauth
 - [ ] Basic Components
 - [ ] Documentations
+- [ ] Dockerfile
