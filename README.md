@@ -1,15 +1,14 @@
-# Elysia with Bun runtime
+# BETH Stack Template
 
-## Getting Started
-To get started with this template, simply paste this command into your terminal:
-```bash
-bun create elysia ./elysia-example
-```
+This is a template for a BETH stack project. It is a simple web application that uses the following technologies:
 
-## Development
-To start the development server run:
-```bash
-bun run dev
-```
+- [B]un.js
+- [E]lysia
+- [T]urso Database
+- [H]TMX
 
-Open http://localhost:3000/ with your browser to see the result.
+Other technologies used:
+
+- Drizzle
+- Tailwind CSS
+- Kitajs
