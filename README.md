@@ -9,6 +9,7 @@ This is a template for a BETH stack project. It is a simple web application that
 
 Other technologies used:
 
+- Typescripts
 - Drizzle
 - Tailwind CSS
 - Kitajs
