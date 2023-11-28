@@ -12,3 +12,7 @@ Other technologies used:
 - Drizzle
 - Tailwind CSS
 - Kitajs
+
+Will add :
+
+- Lucia Auth
