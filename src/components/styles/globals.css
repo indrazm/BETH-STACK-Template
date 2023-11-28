@@ -37,6 +37,9 @@
   a {
     @apply font-medium text-indigo-600 hover:text-indigo-500;
   }
+  li {
+    @apply mb-2 list-item list-disc ml-5;
+  }
 }
 
 @layer components {
