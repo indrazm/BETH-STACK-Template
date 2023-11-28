@@ -4,7 +4,7 @@ export const Login = () => {
   return (
     <BaseHTML>
       <main class="h-screen flex justify-center items-center">
-        <div class="card w-[400px] space-y-4">
+        <div class="w-[300px] space-y-4">
           <form class="space-y-2" method="post" action="/login">
             <div class="py-4">
               <h5>Login</h5>

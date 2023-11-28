@@ -17,6 +17,8 @@ Other technologies used:
 
 ## Getting Started
 
+![Preview](public/ss.png)
+
 To get started, clone this repository and run `bun install` to install the dependencies. Then, run `bun start` to start the development server.
 
 ## Database
@@ -31,12 +33,12 @@ To create a migration, run :
 bun db:generate
 ```
 
-This will create a migration file in the `db/migrations` folder. 
+This will create a migration file in the `db/migrations` folder.
 To run the migrations, run :
 
 ```bash
 bun db:migrate
-``````
+```
 
 ## What's next ?
 

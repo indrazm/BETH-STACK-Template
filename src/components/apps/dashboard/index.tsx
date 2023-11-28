@@ -5,13 +5,15 @@ export const Dashboard = async ({ userId }: { userId: string }) => {
   const user = await auth.getUser(userId);
   return (
     <BaseHTML>
-      <header class="flex justify-between p-4 items-center bg-gradient-to-b from-indigo-100 to-transparent">
+      <header class="flex justify-between p-4 items-center bg-gradient-to-b from-zinc-200 to-transparent">
         <div class="flex gap-2 items-center">
           <img src="public/logo.svg" width="24px" height="24px" />
           <div class="font-bold tracking-tighter text-lg">BETH.</div>
         </div>
         <nav class="flex items-center gap-4">
-          <div safe>{user.name}</div>
+          <p class="font-medium" safe>
+            {user.name}
+          </p>
           <form method="post" action="/logout">
             <button>Logout</button>
           </form>
