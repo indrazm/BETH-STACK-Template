@@ -1,9 +1,26 @@
-import { text, sqliteTable, numeric } from "drizzle-orm/sqlite-core";
+import { sqliteTable, text, blob } from "drizzle-orm/sqlite-core";
 
-export const notes = sqliteTable("notes", {
-  id: text("id").notNull().unique().primaryKey(),
-  content: text("content").notNull(),
-  user: text("user").notNull(),
-  createdAt: text("createdAt").notNull().default("CURRENT_TIMESTAMP"),
-  updatedAt: text("updatedAt").notNull().default("CURRENT_TIMESTAMP"),
+export const user = sqliteTable("user", {
+  id: text("id").primaryKey(),
+});
+
+export const session = sqliteTable("user_session", {
+  id: text("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id),
+  activeExpires: blob("active_expires", {
+    mode: "bigint",
+  }).notNull(),
+  idleExpires: blob("idle_expires", {
+    mode: "bigint",
+  }).notNull(),
+});
+
+export const key = sqliteTable("user_key", {
+  id: text("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id),
+  hashedPassword: text("hashed_password"),
 });
