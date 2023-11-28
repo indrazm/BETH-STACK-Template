@@ -25,8 +25,6 @@ export const authRouter = new Elysia()
     session.value = sessionCookie;
 
     set.redirect = "/dashboard";
-
-    // return "Login success, redirecting...";
   })
 
   .post("/register", async ({ body }) => {
@@ -56,8 +54,7 @@ export const authRouter = new Elysia()
   .post("/logout", async ({ set, cookie: { session } }) => {
     const { sessionId } = session.value;
 
-    const authRequest = auth.invalidateSession(sessionId);
-    console.log(authRequest);
+    await auth.invalidateSession(sessionId);
 
     set.redirect = "/login";
   });

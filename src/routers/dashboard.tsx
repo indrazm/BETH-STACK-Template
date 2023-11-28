@@ -3,7 +3,7 @@ import { auth } from "../auth/lucia";
 import { Dashboard } from "../components/apps/dashboard";
 
 export const dashboardRouter = new Elysia().get("/dashboard", async ({ set, cookie: { session } }) => {
-  if (session.value === undefined) {
+  if (!session.value) {
     set.redirect = "/login";
     return;
   }
