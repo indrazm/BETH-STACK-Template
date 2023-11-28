@@ -7,17 +7,14 @@ import { authRouter } from "./routers/auth";
 import { dashboardRouter } from "./routers/dashboard";
 
 import "@kitajs/html/register";
+import { Home } from "./components/templates/home";
 
 const app = new Elysia()
   .use(html())
   .use(staticPlugin())
   .use(dashboardRouter)
   .use(authRouter)
-  .get("/", () => (
-    <BaseHTML>
-      <h1 class="text-indigo-500">Hey There!</h1>
-    </BaseHTML>
-  ))
+  .get("/", () => <Home />)
 
   .listen(3000);
 

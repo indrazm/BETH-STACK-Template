@@ -690,6 +690,10 @@ a:hover {
   --tw-shadow: var(--tw-shadow-colored);
 }
 
+.block {
+  display: block;
+}
+
 .flex {
   display: flex;
 }
@@ -700,6 +704,15 @@ a:hover {
 
 .w-\[400px\] {
   width: 400px;
+}
+
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .items-center {
@@ -730,8 +743,22 @@ a:hover {
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
 
+.space-y-1 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
+}
+
 .p-4 {
   padding: 1rem;
+}
+
+.p-12 {
+  padding: 3rem;
+}
+
+.p-5 {
+  padding: 1.25rem;
 }
 
 .py-4 {
