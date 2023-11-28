@@ -1,3 +1,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    font-family: "Inter", sans-serif;
+    @apply bg-gray-50;
+  }
+  h1 {
+    @apply text-6xl font-bold tracking-tighter;
+  }
+  h2 {
+    @apply text-5xl font-bold tracking-tighter;
+  }
+  h3 {
+    @apply text-4xl font-bold tracking-tighter;
+  }
+  h4 {
+    @apply text-3xl font-bold tracking-tighter;
+  }
+  h5 {
+    @apply text-2xl font-bold tracking-tighter;
+  }
+  h6 {
+    @apply text-xl font-bold tracking-tighter;
+  }
+  p {
+    @apply text-sm;
+  }
+  input {
+    @apply w-full text-sm p-2 border placeholder:text-gray-300 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500;
+  }
+  button {
+    @apply w-full items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none disabled:opacity-30 disabled:cursor-not-allowed transition duration-200;
+  }
+  a {
+    @apply font-medium text-indigo-600 hover:text-indigo-500;
+  }
+}
