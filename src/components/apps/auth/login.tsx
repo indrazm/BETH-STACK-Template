@@ -5,7 +5,7 @@ export const Login = () => {
     <BaseHTML>
       <main class="h-screen flex justify-center items-center">
         <div class="w-[300px] space-y-4">
-          <form class="space-y-2" hx-post="/auth/login" hx-target="#authMessage">
+          <form class="space-y-2" method="post" action="/login">
             <div class="py-4">
               <h5>Login</h5>
               <p class="text-gray-500">Input your email and password</p>
@@ -20,7 +20,6 @@ export const Login = () => {
               Register
             </a>{" "}
           </p>
-          <div id="authMessage"></div>
         </div>
       </main>
     </BaseHTML>
