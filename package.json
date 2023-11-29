@@ -26,6 +26,8 @@
   },
   "devDependencies": {
     "bun-types": "latest",
+    "prettier": "^3.1.0",
+    "prettier-plugin-tailwindcss": "^0.5.7",
     "tailwindcss": "^3.3.5"
   },
   "module": "src/index.js"

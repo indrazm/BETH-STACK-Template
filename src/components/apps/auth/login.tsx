@@ -14,6 +14,9 @@ export const Login = () => {
             <input name="password" placeholder="Input your password" type="password" />
             <button>Log in</button>
           </form>
+          <form method="get" action="/login/github">
+            <button class="btn-secondary">Continue with Github</button>
+          </form>
           <p>
             Don't have an account ?{" "}
             <a hx-boost="true" href="/register">
