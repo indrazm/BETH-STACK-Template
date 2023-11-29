@@ -11,22 +11,27 @@ export const authRouter = new Elysia()
 
   .get("/register", () => <Register />)
 
-  .post("/login", async ({ set, body, cookie: { session } }) => {
+  .post("/login", async ({ body }) => {
     const { email, password } = body as any;
 
-    const key = await auth.useKey("email", email, password);
-    const sessionCookie = await auth.createSession({
-      userId: key.userId,
-      attributes: {},
-    });
-    const cookieOptions = auth.createSessionCookie(session);
+    try {
+      const key = await auth.useKey("email", email, password);
+      const sessionData = await auth.createSession({
+        userId: key.userId,
+        attributes: {},
+      });
+      const sessionCookie = auth.createSessionCookie(sessionData);
 
-    cookieOptions.attributes.path = "/";
-
-    session.set(cookieOptions);
-    session.value = sessionCookie;
-
-    set.redirect = "/dashboard";
+      return new Response(null, {
+        headers: {
+          Location: "/dashboard",
+          "Set-Cookie": sessionCookie.serialize(), // store session cookie
+        },
+        status: 302,
+      });
+    } catch (error) {
+      return "Login failed";
+    }
   })
 
   .post("/register", async ({ body }) => {
@@ -53,10 +58,10 @@ export const authRouter = new Elysia()
     }
   })
 
-  .post("/logout", async ({ set, cookie: { session } }) => {
-    const { sessionId } = session.value;
+  .post("/logout", async ({ set, cookie: { auth_session } }) => {
+    await auth.invalidateSession(auth_session.value);
 
-    await auth.invalidateSession(sessionId);
+    auth_session.remove();
 
     set.redirect = "/login";
   })
@@ -78,9 +83,8 @@ export const authRouter = new Elysia()
     });
   })
 
-  .get("/login/github/callback", async ({ request }) => {
+  .get("/login/github/callback", async ({ request, cookie: { session } }) => {
     const cookies = parseCookie(request.headers.get("Cookie") ?? "");
-    console.log(cookies);
     const storedState = cookies.github_oauth_state;
     const url = new URL(request.url);
     const state = url.searchParams.get("state");
@@ -92,7 +96,8 @@ export const authRouter = new Elysia()
       });
     }
     try {
-      const { getExistingUser, githubUser, createUser } = await githubAuth.validateCallback(code);
+      const { getExistingUser, githubUser, createUser } =
+        await githubAuth.validateCallback(code);
 
       const getUser = async () => {
         const existingUser = await getExistingUser();
@@ -106,11 +111,12 @@ export const authRouter = new Elysia()
       };
 
       const user = await getUser();
-      const session = await auth.createSession({
+      const sessionData = await auth.createSession({
         userId: user.userId,
         attributes: {},
       });
-      const sessionCookie = auth.createSessionCookie(session);
+      const sessionCookie = auth.createSessionCookie(sessionData);
+
       // redirect to profile page
       return new Response(null, {
         headers: {
