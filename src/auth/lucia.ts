@@ -2,7 +2,7 @@ import { lucia } from "lucia";
 import { web } from "lucia/middleware";
 import { libsql } from "@lucia-auth/adapter-sqlite";
 import { client } from "../db/client";
-import { github } from "@lucia-auth/oauth/providers";
+import { github, google } from "@lucia-auth/oauth/providers";
 
 export const auth = lucia({
   env: "DEV",
@@ -26,6 +26,12 @@ export const auth = lucia({
 export const githubAuth = github(auth, {
   clientId: process.env.GITHUB_CLIENT_ID as string,
   clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+});
+
+export const googleAuth = google(auth, {
+  clientId: process.env.GOOGLE_CLIENT_ID as string,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+  redirectUri: process.env.GOOGLE_REDIRECT_URI as string,
 });
 
 export type Auth = typeof auth;

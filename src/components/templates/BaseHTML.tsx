@@ -12,6 +12,7 @@ export const BaseHTML = ({ children }: Html.PropsWithChildren) => {
         <link rel="stylesheet" href="/public/globals.css" />
         <script src="https://unpkg.com/htmx.org@1.9.9"></script>
         <script src="https://unpkg.com/htmx.org/dist/ext/disable-element.js"></script>
+        <script src="https://kit.fontawesome.com/9fae1ea7fb.js" crossorigin="anonymous"></script>
     </head>
     <body>
         ${children}
