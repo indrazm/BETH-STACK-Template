@@ -42,7 +42,7 @@ bun db:migrate
 
 ## What's next ?
 
-- [ ] Lucia Oauth
+- [x] Lucia Oauth Github and Google ✅
 - [ ] Basic Components
 - [ ] Documentations
 - [ ] Dockerfile
