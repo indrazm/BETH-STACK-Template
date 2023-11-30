@@ -1,7 +1,7 @@
 import { Elysia } from "elysia";
 import { Login } from "../components/apps/auth/login";
 import { Register } from "../components/apps/auth/register";
-import { auth, githubAuth } from "../auth/lucia";
+import { auth, githubAuth, googleAuth } from "../auth/lucia";
 import { LuciaError } from "lucia";
 import { serializeCookie, parseCookie } from "lucia/utils";
 import { OAuthRequestError } from "@lucia-auth/oauth";
@@ -83,7 +83,7 @@ export const authRouter = new Elysia()
     });
   })
 
-  .get("/login/github/callback", async ({ request, cookie: { session } }) => {
+  .get("/login/github/callback", async ({ request }) => {
     const cookies = parseCookie(request.headers.get("Cookie") ?? "");
     const storedState = cookies.github_oauth_state;
     const url = new URL(request.url);
@@ -96,8 +96,7 @@ export const authRouter = new Elysia()
       });
     }
     try {
-      const { getExistingUser, githubUser, createUser } =
-        await githubAuth.validateCallback(code);
+      const { getExistingUser, githubUser, createUser } = await githubAuth.validateCallback(code);
 
       const getUser = async () => {
         const existingUser = await getExistingUser();
@@ -127,6 +126,83 @@ export const authRouter = new Elysia()
       });
     } catch (e) {
       if (e instanceof OAuthRequestError) {
+        // invalid code
+        return new Response(null, {
+          status: 400,
+        });
+      }
+      return new Response(null, {
+        status: 500,
+      });
+    }
+  })
+
+  .get("/login/google", async () => {
+    const [url, state] = await googleAuth.getAuthorizationUrl();
+    const stateCookie = serializeCookie("google_oauth_state", state, {
+      httpOnly: true,
+      secure: false, // `true` for production
+      path: "/",
+      maxAge: 60 * 60,
+    });
+    return new Response(null, {
+      status: 302,
+      headers: {
+        Location: url.toString(),
+        "Set-Cookie": stateCookie,
+      },
+    });
+  })
+
+  .get("/login/google/callback", async ({ request }) => {
+    const cookies = parseCookie(request.headers.get("Cookie") ?? "");
+    const storedState = cookies.github_oauth_state;
+    const url = new URL(request.url);
+    const state = url.searchParams.get("state");
+    const code = url.searchParams.get("code");
+    // // validate state
+    if (!state || !code) {
+      return new Response(null, {
+        status: 400,
+      });
+    }
+
+    // console.log(state, code);
+
+    try {
+      const { getExistingUser, googleUser, createUser } = await googleAuth.validateCallback(code);
+
+      console.log(googleUser);
+
+      const getUser = async () => {
+        const existingUser = await getExistingUser();
+        if (existingUser) return existingUser;
+        const user = await createUser({
+          attributes: {
+            name: googleUser.name,
+          },
+        });
+        return user;
+      };
+
+      const user = await getUser();
+      const sessionData = await auth.createSession({
+        userId: user.userId,
+        attributes: {},
+      });
+      const sessionCookie = auth.createSessionCookie(sessionData);
+
+      // redirect to profile page
+      return new Response(null, {
+        headers: {
+          Location: "/dashboard",
+          "Set-Cookie": sessionCookie.serialize(), // store session cookie
+        },
+        status: 302,
+      });
+    } catch (e) {
+      if (e instanceof OAuthRequestError) {
+        console.log(e);
         // invalid code
         return new Response(null, {
           status: 400,
