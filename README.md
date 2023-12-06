@@ -23,7 +23,7 @@ To get started, clone this repository and run `bun install` to install the depen
 
 ## Database
 
-The database is a Turso database. It is sqlite on Edge. The database schema is located in the `db` folder `schema.ts`.
+The database is a Turso database. It is sqlite on Edge. The database schema is located in the `models` folder `schema.ts`.
 
 ### Migrations
 
@@ -33,7 +33,7 @@ To create a migration, run :
 bun db:generate
 ```
 
-This will create a migration file in the `db/migrations` folder.
+This will create a migration file in the `models/migrations` folder.
 To run the migrations, run :
 
 ```bash

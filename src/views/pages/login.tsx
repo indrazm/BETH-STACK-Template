@@ -1,4 +1,4 @@
-import { BaseHTML } from "../../templates/BaseHTML";
+import { BaseHTML } from "../templates/BaseHTML";
 
 export const Login = () => {
   return (
@@ -11,11 +11,7 @@ export const Login = () => {
               <p class="text-gray-500">Input your email and password</p>
             </div>
             <input name="email" placeholder="Input your email" type="email" />
-            <input
-              name="password"
-              placeholder="Input your password"
-              type="password"
-            />
+            <input name="password" placeholder="Input your password" type="password" />
             <button>Log in</button>
           </form>
           <div class="space-y-2">

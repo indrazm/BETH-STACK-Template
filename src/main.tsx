@@ -2,10 +2,9 @@ import { Elysia } from "elysia";
 import { html } from "@elysiajs/html";
 import { staticPlugin } from "@elysiajs/static";
 
-import { Home } from "./components/templates/home";
-
-import { authRouter } from "./routers/auth";
-import { dashboardRouter } from "./routers/dashboard";
+import { authRouter } from "./routes/auth.route";
+import { dashboardRouter } from "./routes/dashboard.route";
+import { pagesRouter } from "./routes/pages.route";
 
 import "@kitajs/html/register";
 
@@ -14,10 +13,7 @@ const app = new Elysia()
   .use(staticPlugin())
   .use(dashboardRouter)
   .use(authRouter)
-  .get("/", () => <Home />)
-
+  .use(pagesRouter)
   .listen(3000);
 
-console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`,
-);
+console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`);

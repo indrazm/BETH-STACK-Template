@@ -1,4 +1,4 @@
-import { BaseHTML } from "../../templates/BaseHTML";
+import { BaseHTML } from "../templates/BaseHTML";
 
 interface DashboardProps {
   name: string;
@@ -37,10 +37,7 @@ export const Dashboard = async ({ name }: DashboardProps) => {
         </section>
         <section class="space-y-3">
           <h5>Another tech</h5>
-          <p>
-            It use Lucia Auth for Authentication, Drizzle for Database ORM,
-            Tailwindcss, and Typescripts.
-          </p>
+          <p>It use Lucia Auth for Authentication, Drizzle for Database ORM, Tailwindcss, and Typescripts.</p>
         </section>
       </main>
     </BaseHTML>

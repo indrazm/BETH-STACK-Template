@@ -1,7 +1,7 @@
 import { lucia } from "lucia";
 import { web } from "lucia/middleware";
 import { libsql } from "@lucia-auth/adapter-sqlite";
-import { client } from "../db/client";
+import { client } from "./drizzle";
 import { github, google } from "@lucia-auth/oauth/providers";
 
 export const auth = lucia({
