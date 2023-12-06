@@ -4,7 +4,7 @@
   "scripts": {
     "tailwindcss": "bunx tailwindcss -i ./src/views/styles/globals.css -o ./public/globals.css --watch",
     "db:generate": "drizzle-kit generate:sqlite",
-    "db:migrate": "bun run ./src/db/migrator.ts",
+    "db:migrate": "bun run ./src/models/migrator.ts",
     "db:studio": "drizzle-kit studio --port 3333",
     "dev": "bun run --watch src/main.tsx",
     "start": "concurrently \"bun run tailwindcss\" \"bun run dev\""
